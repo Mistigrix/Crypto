@@ -4,7 +4,7 @@
 # nom du fichier => interface.py
 
 # date de creation => 05/02/2021
-# date dernier modif => 07/02/2021
+# date dernier modif => 26/05/2021
 # role: Contient la classe Interface et les differentes methodes en reference avec l'interface
 
 #  =>Par MISTIGRIX658<=

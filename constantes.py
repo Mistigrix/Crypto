@@ -12,7 +12,7 @@
 import string
 
 
-all_letters = list(string.ascii_letters + string.punctuation)
+all_letters = list(string.ascii_letters + string.punctuation + ' ') # creation d'une liste de carractere
 
 alphabets = {}
 
