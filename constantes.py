@@ -4,7 +4,7 @@
 # nom du fichier => constante.py
 
 # date de creation => 06/02/2021
-# date dernier modif => 07/02/2021
+# date dernier modif => 27/02/2021
 # role: Contient toute les constantes du programme
 
 #  =>Par MISTIGRIX658<=
@@ -12,7 +12,7 @@
 import string
 
 
-all_letters = list(string.ascii_letters + string.punctuation + ' ') # creation d'une liste de carractere
+all_letters = list(string.ascii_letters + string.punctuation + string.digits + ' ') # creation d'une liste de carractere
 
 alphabets = {}
 
@@ -26,3 +26,5 @@ width_button = 20
 height_button = 3
 
 font_default = ('courrier', 10)
+
+program_version = '1.2.0'

@@ -29,6 +29,7 @@ class Interface:
         self.window.mainloop()
 
     def home(self):
+        """Acceuil du programme permettant d'aller d'une session à une autre"""
         self.interfaceClean()
         img = tkinter.PhotoImage(file='image_acceuil.gif')
 
@@ -40,18 +41,27 @@ class Interface:
         #label = tkinter.Label(self.window, text="Bienvenue sur Crypto", font=("Courrier", 20), bg='black', fg='white')
         #label.pack()
 
-        frame_button = tkinter.Frame()
+        frame = tkinter.Frame()
+        frame_button_message = tkinter.Frame()
+        frame_button_file = tkinter.Frame()
 
-        bouton_crypter = tkinter.Button(frame_button, text='Cryptage', bg='blue', fg='white', command=self.interfaceCryptage, width=width_button, height=height_button, font=font_default)
-        bouton_crypter.pack()
-        bouton_decrypter = tkinter.Button(frame_button, text='Decryptage', bg='blue', fg='white', command=self.interfaceDecryptage, width=width_button, height=height_button, font=font_default)
-        bouton_decrypter.pack()
-        bouton_quitte = tkinter.Button(frame_button, text='Quitter', bg='blue', fg='white', command=self.window.destroy, width=width_button, height=height_button, font=font_default)
-        bouton_quitte.pack()
+        # boutons en rapport avec le cryptage et le decryptage de message
+        button_crypt_mess = tkinter.Button(self.window, text='Cryptage de Message', bg='blue', fg='white', command=self.interfaceCryptage, width=width_button, height=height_button, font=font_default)
+        button_crypt_mess.place(x=200, y=150)
+        button_decrypt_mess = tkinter.Button(self.window, text='Decryptage de Message', bg='blue', fg='white', command=self.interfaceDecryptage, width=width_button, height=height_button, font=font_default)
+        button_decrypt_mess.place(x=200, y=230)
 
-        frame_button.place(x=320, y=220)
+        # boutons en rapport avec le cryptage et decryptage de fichier
+        button_crypt_file = tkinter.Button(self.window, text='Cryptage de Fichier', bg='blue', fg='white',command=self.interfaceCryptFile, width=width_button, height=height_button,font=font_default)
+        button_crypt_file.place(x=400, y=150)
+        button_decrypt_file = tkinter.Button(self.window, text='Decryptage de Fichier', bg='blue', fg='white', command=self.interfaceDecryptFile, width=width_button, height=height_button, font=font_default)
+        button_decrypt_file.place(x=400, y=230)
 
-        label_version = tkinter.Label(self.window, text="by MISTIGRIX version 1.0.0", font=('Courrier', 8))
+
+        bouton_quitte = tkinter.Button(self.window, text='Quitter', bg='blue', fg='white', command=self.window.destroy, width=10, height=2, font=font_default)
+        bouton_quitte.place(x=690, y=370)
+
+        label_version = tkinter.Label(self.window, text=f"by MISTIGRIX version {program_version}", font=('Courrier', 8))
         label_version.place(x=5, y=410)
 
         self.loadScreen()
@@ -67,6 +77,8 @@ class Interface:
     def bar(self):
 
         menu_bar = tkinter.Menu(self.window)
+
+        menu_bar.add_cascade(label='Acceuil', command=self.home)
 
         # creation d'un premier menu
 

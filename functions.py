@@ -26,13 +26,6 @@ def recupFile(entry_path):
 
     filename = filedialog.askopenfilename(title='Ouvrir votre document', filetypes=[('txt files','.txt'),('all files,', '.*')])
 
-    try:
-        fichier = open(filename, 'r')
-        content = fichier.read()
-        fichier.close()
-    except FileNotFoundError:
-        displayMess("Le fichier n'a pas été rétrouver", 'Non Trouvé')
-
     entry_path.delete(0, tkinter.END)
     entry_path.insert(0, filename)
 

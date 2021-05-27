@@ -2,7 +2,7 @@
 #         => Crypto <=
 
 # date de creation => 05/02/2021
-# date dernier modif => 06/02/2021
+# date dernier modif => 27/02/2021
 # role: La base elle même du programme permet de faire appel à d'autre fonction ou methode
 
 #         =>Par MISTIGRIX658<=
