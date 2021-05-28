@@ -6,19 +6,21 @@ from tkinter import messagebox
 from cryptage import *
 
 
-def recupContentFile(crypt, entry_path):
+def recupContentFile(crypt, entry_path, entry_clef):
     """Chargé de recuperer le chemin menant au fichier"""
     file_path = entry_path.get()
+    clef = entry_clef.get()
+    clef = int(clef)
 
     # crypt est un boolean
 
     # crypt vaut vrai alors on crypte le fichier
     if crypt:
-        cryptFile(file_path, 2)
+        cryptFile(file_path, clef)
         displayMess("Votre fichier à bien été crypter", 'Crypter')
     # crypt vaut faut c'est a dire qu'on veut decrypter
     else:
-        decryptFile(file_path, 2)
+        decryptFile(file_path, clef)
         displayMess("Votre fichier à bien été decrypter", 'Decrypter')
 
 def recupFile(entry_path):

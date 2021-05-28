@@ -4,7 +4,7 @@
 # nom du fichier => interface.py
 
 # date de creation => 05/02/2021
-# date dernier modif => 26/05/2021
+# date dernier modif => 28/05/2021
 # role: Contient la classe Interface et les differentes methodes en reference avec l'interface
 
 #  =>Par MISTIGRIX658<=
@@ -47,15 +47,15 @@ class Interface:
 
         # boutons en rapport avec le cryptage et le decryptage de message
         button_crypt_mess = tkinter.Button(self.window, text='Cryptage de Message', bg='blue', fg='white', command=self.interfaceCryptage, width=width_button, height=height_button, font=font_default)
-        button_crypt_mess.place(x=200, y=150)
+        button_crypt_mess.place(x=200, y=170)
         button_decrypt_mess = tkinter.Button(self.window, text='Decryptage de Message', bg='blue', fg='white', command=self.interfaceDecryptage, width=width_button, height=height_button, font=font_default)
-        button_decrypt_mess.place(x=200, y=230)
+        button_decrypt_mess.place(x=200, y=250)
 
         # boutons en rapport avec le cryptage et decryptage de fichier
         button_crypt_file = tkinter.Button(self.window, text='Cryptage de Fichier', bg='blue', fg='white',command=self.interfaceCryptFile, width=width_button, height=height_button,font=font_default)
-        button_crypt_file.place(x=400, y=150)
+        button_crypt_file.place(x=400, y=170)
         button_decrypt_file = tkinter.Button(self.window, text='Decryptage de Fichier', bg='blue', fg='white', command=self.interfaceDecryptFile, width=width_button, height=height_button, font=font_default)
-        button_decrypt_file.place(x=400, y=230)
+        button_decrypt_file.place(x=400, y=250)
 
 
         bouton_quitte = tkinter.Button(self.window, text='Quitter', bg='blue', fg='white', command=self.window.destroy, width=10, height=2, font=font_default)
@@ -67,9 +67,9 @@ class Interface:
         self.loadScreen()
 
 
-    # on definit une methode pour nettoyé la fenetre
+    # definit une methode pour nettoyé la fenetre
     def interfaceClean(self):
-        """permet de supprimer tous ce qui a été creer à l'ecran"""
+        """Nettoyer l'ecran en supprimant tous mes elements qui y sont"""
         for c in self.window.winfo_children():
             c.destroy()
 
@@ -83,13 +83,13 @@ class Interface:
         # creation d'un premier menu
 
         menu_message = tkinter.Menu(menu_bar, tearoff=0)
-        menu_message.add_command(label="Crypter", command=self.interfaceCryptage)  # ajout de la commande
-        menu_message.add_command(label="Decrypter", command=self.interfaceDecryptage)  # ajout de la commande
+        menu_message.add_command(label="Session de Cryptage", command=self.interfaceCryptage)  # ajout de la commande
+        menu_message.add_command(label="Session de Decryptage", command=self.interfaceDecryptage)  # ajout de la commande
         menu_bar.add_cascade(label='Message', menu=menu_message)
 
         menu_fichier = tkinter.Menu(menu_bar, tearoff=0)
-        menu_fichier.add_command(label='Crypter', command=self.interfaceCryptFile)
-        menu_fichier.add_command(label='Decrypter', command=self.interfaceDecryptFile)
+        menu_fichier.add_command(label='Session de Cryptage', command=self.interfaceCryptFile)
+        menu_fichier.add_command(label='Session de Decryptage', command=self.interfaceDecryptFile)
         menu_bar.add_cascade(label='Fichier', menu=menu_fichier)
 
         menu_bar.add_cascade(label='Quitter', command=self.window.destroy)
@@ -107,7 +107,7 @@ class Interface:
 
         self.bar()
 
-        label_title = tkinter.Label(self.window, text="SESSION DE CRYPTAGE", font=('Helvetica', 20), bg='#4065A4', fg='white')
+        label_title = tkinter.Label(self.window, text="SESSION DE CRYPTAGE DE MESSAGE", font=('Helvetica', 20), bg='#4065A4', fg='white')
         label_title.pack()
 
         # creation des champs
@@ -153,7 +153,7 @@ class Interface:
 
         self.bar()
 
-        label_title = tkinter.Label(self.window, text="SESSION DE DECRYPTAGE", font=('Helvetica', 20), bg='#4065A4', fg='white')
+        label_title = tkinter.Label(self.window, text="SESSION DE DECRYPTAGE DE MESSAGE", font=('Helvetica', 20), bg='#4065A4', fg='white')
         label_title.pack()
 
         # creation des champs
@@ -205,19 +205,27 @@ class Interface:
 
         frame = tkinter.Frame(self.window, bg='#4065A4')
 
-        self.entry_path = tkinter.Entry(frame, font=('Courrier', 15), bg='#4065A4',
-                                      fg='white', width=30)
-        self.entry_path.pack()
-        self.button_file = tkinter.Button(frame, text='Choisir un fichier', font=('Courrier', 15), bg='#4065A4',
-                                      fg='white', width=30, command=partial(recupFile, self.entry_path))
-        self.button_file.pack()
+        welcome_label = tkinter.Label(self.window, text='SESSION DE CRYPTAGE DE FICHIER', bg='#4065A4', font=('Helvetica', 20), fg='white')
+        welcome_label.pack(side='top')
 
-        file = self.entry_path.get()
+        label_recup_file = tkinter.Label(self.window, text='Entrer le repertoire du fichier', bg='#4065A4', font=('Courrier', 15), fg='white')
+        label_recup_file.place(x=20, y=50)
 
-        tkinter.Button(frame, text='Crypter le fichier', font=('Courrier', 15), bg='#4065A4',
-                                      fg='white', width=30, command=partial(recupContentFile, True, self.entry_path)).pack()
+        entry_path = tkinter.Entry(self.window, font=('Courrier', 15), bg='#4065A4', fg='white', width=25)
+        entry_path.place(x=300, y=50)
 
-        frame.pack(expand=True)
+        button_file = tkinter.Button(self.window, text='Choisir un fichier', font=('Courrier', 15), bg='#4065A4', fg='white', width=15, command=partial(recupFile, entry_path))
+        button_file.place(x=600, y=50)
+
+        label_recup_clef = tkinter.Label(self.window, text='Entrer le clé de chiffrement', bg='#4065A4', font=('Courrier', 15), fg='white')
+        label_recup_clef.place(x=20, y=150)
+
+        entry_clef = tkinter.Entry(self.window, font=('Courrier', 15), bg='#4065A4', fg='white', width=30)
+        entry_clef.place(x=300, y=150)
+
+        tkinter.Button(self.window, text='Crypter le fichier', font=('Courrier', 15), bg='#4065A4',
+                                      fg='white', width=30, command=partial(recupContentFile, True, entry_path, entry_clef)).place(x=300, y=300)
+
 
 
     def interfaceDecryptFile(self):
@@ -231,15 +239,28 @@ class Interface:
 
         frame = tkinter.Frame(self.window, bg='#4065A4')
 
-        self.entry_path = tkinter.Entry(frame, font=('Courrier', 15), bg='#4065A4',
-                                        fg='white', width=30)
-        self.entry_path.pack()
-        self.button_file = tkinter.Button(frame, text='Choisir un fichier', font=('Courrier', 15), bg='#4065A4',
-                                          fg='white', width=30, command=partial(recupFile, self.entry_path))
-        self.button_file.pack()
+        welcome_label = tkinter.Label(self.window, text='SESSION DE DECRYPTAGE DE FICHIER', bg='#4065A4', font=('Helvetica', 20), fg='white')
+        welcome_label.pack(side='top')
 
-        tkinter.Button(frame, text='Decrypter le fichier', font=('Courrier', 15), bg='#4065A4',
-                       fg='white', width=30, command=partial(recupContentFile, False, self.entry_path)).pack()
+        label_recup_file = tkinter.Label(self.window, text='Entrer le repertoire du fichier', bg='#4065A4', font=('Courrier', 15), fg='white')
+        label_recup_file.place(x=20, y=50)
 
-        frame.pack(expand=True)
+        entry_path = tkinter.Entry(self.window, font=('Courrier', 15), bg='#4065A4', fg='white', width=25)
+        entry_path.place(x=300, y=50)
+
+        button_file = tkinter.Button(self.window, text='Choisir un fichier', font=('Courrier', 15), bg='#4065A4',
+                                     fg='white', width=15, command=partial(recupFile, entry_path))
+        button_file.place(x=600, y=50)
+
+        label_recup_clef = tkinter.Label(self.window, text='Entrer le clé de déchiffrement', bg='#4065A4',
+                                         font=('Courrier', 15), fg='white')
+        label_recup_clef.place(x=20, y=150)
+
+        entry_clef = tkinter.Entry(self.window, font=('Courrier', 15), bg='#4065A4', fg='white', width=30)
+        entry_clef.place(x=300, y=150)
+
+        tkinter.Button(self.window, text='Decrypter le fichier', font=('Courrier', 15), bg='#4065A4',
+                       fg='white', width=30, command=partial(recupContentFile, False, entry_path, entry_clef)).place(
+            x=300, y=300)
+
 
