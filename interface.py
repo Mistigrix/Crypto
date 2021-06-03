@@ -1,14 +1,3 @@
-####################################
-#         => Crypto <=
-
-# nom du fichier => interface.py
-
-# date de creation => 05/02/2021
-# date dernier modif => 28/05/2021
-# role: Contient la classe Interface et les differentes methodes en reference avec l'interface
-
-#  =>Par MISTIGRIX658<=
-
 import tkinter
 import pickle
 from tkinter import filedialog
@@ -17,6 +6,8 @@ from cryptage import *
 from tkinter import messagebox
 from functions import *
 from constantes import *
+from cryptage.crypt import Cryptage
+from cryptage.decrypt import Decryptage
 
 # definition de la classe
 class Interface:
@@ -142,21 +133,18 @@ class Interface:
         message = self.insert_mess.get()
         clef = self.insert_clef.get()
 
-        message_crypte = cryptage(message, clef)
+        cryptage = Cryptage()
+        message_crypte = cryptage.lockMess(message, clef)
         self.affiche.delete(0, 10)
         self.affiche.insert(0, message_crypte)
 
     def interfaceDecryptage(self):
 
-
         self.interfaceClean()
-
         self.bar()
 
         label_title = tkinter.Label(self.window, text="SESSION DE DECRYPTAGE DE MESSAGE", font=('Helvetica', 20), bg='#4065A4', fg='white')
         label_title.pack()
-
-        # creation des champs
 
         # on met le premier champs et son label dans un premier frame
         label_mess = tkinter.Label(self.window, text='Entrer le message ici:', font=('Courrier', 15), bg='#4065A4',
@@ -193,7 +181,8 @@ class Interface:
         message = self.insert_mess.get()
         clef = self.insert_clef.get()
 
-        message_decrypte = decryptage(message, clef)
+        decryptage = Decryptage()
+        message_decrypte = decryptage.unLockMess(message, clef)
         self.affiche.delete(0, tkinter.END)
         self.affiche.insert(0, message_decrypte)
 
