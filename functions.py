@@ -1,9 +1,10 @@
 """Fichier contenant toute les fonctions du programme crypto"""
 
 import tkinter
+from cryptage.crypt import Cryptage
+from cryptage.decrypt import Decryptage
 from tkinter import filedialog
 from tkinter import messagebox
-from cryptage import *
 
 
 def recupContentFile(crypt, entry_path, entry_clef):
@@ -33,46 +34,17 @@ def recupFile(entry_path):
 
 
 def cryptFile(file_path, clef):
-    """Fonction permettant de crypter un fichier"""
 
-    try:
-        file = open(file_path, 'r+')
-    except FileNotFoundError: # le fichier n'a pas été rétrouvé
-        displayMess("Le fichier n'a pas été rétrouver", 'Non Trouvé')
-        return 0
-
-    content = file.readlines()
-
-    list_crypt = []
-
-    # recupere chaque ligne, la crypte et l'ajoute a liste crypter
-    for line in content:
-        line_crypt = cryptage(line, clef)
-        list_crypt.append(line_crypt)
-
-    file.close()
+    cryptage = Cryptage()
+    list_crypt = cryptage.lockFile(file_path, clef)
 
     # sauvegarde du fichier
     saveFile(file_path, list_crypt)
 
 def decryptFile(file_path, clef):
-    """Fonction permettant de crypter un fichier"""
 
-    try:
-        file = open(file_path, 'r+')
-    except FileNotFoundError: # le fichier n'a pas été rétrouvé
-        displayMess("Le fichier n'a pas été rétrouver", 'Non Trouvé')
-        return 0
-
-    content = file.readlines()
-
-    list_decrypt = []
-
-    for paragraph in content:
-        paragraph_decrypt = decryptage(paragraph, clef)
-        list_decrypt.append(paragraph_decrypt)
-
-    file.close()
+    decryptage = Decryptage()
+    list_decrypt = decryptage.unLockFile(path=file_path, clef=clef)
 
     saveFile(file_path, list_decrypt)
 
