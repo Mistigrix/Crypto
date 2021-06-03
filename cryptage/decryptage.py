@@ -1,21 +1,20 @@
 # coding:utf-8
+"""Ce fichier contient la classe de cryptage"""
 from constantes import *
 
-"""Ce fichier contient la classe de cryptage"""
-
-class Cryptage:
+class Decryptage:
     """Classe permettant de cryptage de fichier ou de message"""
 
     def __init__(self):
         pass
 
-    def lockMess(self, message, clef):
+    def unLockMess(self, message, clef):
         """Methode permettant de crypter un message et retourne le message crypter
         Paramètre: message à crypter et la clé de chiffrement"""
 
-        return self.lock(message, clef)
+        return self.unLock(message, clef)
 
-    def lockFile(self, path, clef):
+    def unLockFile(self, path, clef):
         """Methode permettant de crypter un fichier en retournant une liste.
         Paramètre: Chemin menant au fichier et la clé de chiffrement"""
 
@@ -28,7 +27,7 @@ class Cryptage:
 
             # recupere chaque ligne, la crypte et l'ajoute a liste crypter
             for line in content:
-                line_crypt = self.lock(line, clef)
+                line_crypt = self.unLock(line, clef)
                 list_crypt.append(line_crypt)
 
             return list_crypt
@@ -40,9 +39,10 @@ class Cryptage:
         except:
             raise Exception
 
-    def lock(self, message, clef):
+    def unLock(self, message, clef):
 
-        message_crypter = ''
+        message_decrypter = ''
+        numero_decrypte = 0
 
         clef = int(clef)  # conversion de la clé en entier (etait en chaine de carrctère au paravant)
 
@@ -52,21 +52,17 @@ class Cryptage:
             for numero_lettre, lettre_alpha in alphabets.items():
                 # on verifie si on a la bonne lettre
                 if lettre == lettre_alpha:
-                    # ajout de la clé au numero de la lettre
-                    numero_lettre = numero_lettre + clef
-                    # on verifie dabord si l'addition ne depasse par les nombres de lettres
-                    if numero_lettre > len(alphabets) - 1:
-                        # on prend la difference le numero de la lettre trouvé et le nombre de lettre dans notre alphabets
-                        numero_lettre = numero_lettre - len(alphabets)  # notre alphabets commence avec l'indice 0
+                    # on soustrait sa clé
+                    numero_decrypte = numero_lettre - clef
+                    if numero_decrypte < 0:
+                        numero_decrypte = numero_decrypte + len(alphabets)
 
-                    # on ajoute la lettre crypter à notre message crypter
-                    message_crypter += alphabets[numero_lettre]
+                    message_decrypter += alphabets[numero_decrypte]
 
-        return message_crypter
-
+        return message_decrypter
 
 if __name__ == '__main__':
-    cryptage = Cryptage()
-    file_crypt = cryptage.lockFile("E:\Codes\Projets\Crypto\\fichier.txt", 2)
-    for line in file_crypt:
+    decryptage = Decryptage()
+    file_decrypt = decryptage.unLockFile("E:\Codes\Projets\Crypto\\fichier.txt", 2)
+    for line in file_decrypt:
         print(line)
