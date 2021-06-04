@@ -114,7 +114,7 @@ class Interface:
         label_clef = tkinter.Label(self.window, text="Entrer la clé de chiffrement ici:", font=('Courrier', 15), bg='#4065A4',fg='white')
         label_clef.place(x=2, y=150)
 
-        self.insert_clef = tkinter.Entry(self.window, bg='#4065A4', font=('Helvetica', 20), fg='white', width=30)
+        self.insert_clef = tkinter.Entry(self.window, bg='#4065A4', font=('Helvetica', 20), fg='white', width=30, show=PASS_CHAR)
         self.insert_clef.place(x=300, y=150)
 
         # le bouton de commande pour pouvoir crypter le message
@@ -159,7 +159,7 @@ class Interface:
                                    bg='#4065A4', fg='white')
         label_clef.place(x=2, y=150)
 
-        self.insert_clef = tkinter.Entry(self.window, bg='#4065A4', font=('Helvetica', 20), fg='white', width=30)
+        self.insert_clef = tkinter.Entry(self.window, bg='#4065A4', font=('Helvetica', 20), fg='white', width=30, show=PASS_CHAR)
         self.insert_clef.place(x=300, y=150)
 
         # le bouton de commande pour pouvoir crypter le message
@@ -209,7 +209,7 @@ class Interface:
         label_recup_clef = tkinter.Label(self.window, text='Entrer le clé de chiffrement', bg='#4065A4', font=('Courrier', 15), fg='white')
         label_recup_clef.place(x=20, y=150)
 
-        entry_clef = tkinter.Entry(self.window, font=('Courrier', 15), bg='#4065A4', fg='white', width=30)
+        entry_clef = tkinter.Entry(self.window, font=('Courrier', 15), bg='#4065A4', fg='white', width=30, show=PASS_CHAR)
         entry_clef.place(x=300, y=150)
 
         tkinter.Button(self.window, text='Crypter le fichier', font=('Courrier', 15), bg='#4065A4',
@@ -245,7 +245,7 @@ class Interface:
                                          font=('Courrier', 15), fg='white')
         label_recup_clef.place(x=20, y=150)
 
-        entry_clef = tkinter.Entry(self.window, font=('Courrier', 15), bg='#4065A4', fg='white', width=30)
+        entry_clef = tkinter.Entry(self.window, font=('Courrier', 15), bg='#4065A4', fg='white', width=30, show=PASS_CHAR)
         entry_clef.place(x=300, y=150)
 
         tkinter.Button(self.window, text='Decrypter le fichier', font=('Courrier', 15), bg='#4065A4',

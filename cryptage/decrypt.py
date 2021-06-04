@@ -45,7 +45,7 @@ class Decryptage:
 
         clef = int(clef)  # conversion de la clé en entier (etait en chaine de carrctère au paravant)
 
-        # on verifie les numeroos des lettres et on les additionnent avec la clef
+        # on verifie les numeros des lettres et on les additionnent avec la clef
         for lettre in message:
             # recuperation des lettres et leurs indices dans la variables alphabets
             for numero_lettre, lettre_alpha in alphabets.items():
@@ -53,7 +53,7 @@ class Decryptage:
                 if lettre == lettre_alpha:
                     # on soustrait sa clé
                     numero_decrypte = numero_lettre - clef
-                    if numero_decrypte < 0:
+                    while numero_decrypte < 0:
                         numero_decrypte = numero_decrypte + len(alphabets)
 
                     message_decrypter += alphabets[numero_decrypte]
@@ -62,6 +62,9 @@ class Decryptage:
 
 if __name__ == '__main__':
     decryptage_object = Decryptage()
-    file_decrypt = decryptage_object.unLockFile("E:\Codes\Projets\Crypto\\fichier.txt", 2)
-    for line in file_decrypt:
-        print(line)
+    message = ''
+    while message != 'exit':
+        message = input("Entrer le message: ")
+        clef = int(input("Entrer la clé de dechiffrement: "))
+        decrypt = decryptage_object.unLockMess(message, clef)
+        print(decrypt)

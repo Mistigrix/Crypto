@@ -12,3 +12,4 @@ width_button = 20
 height_button = 3
 font_default = ('courrier', 10)
 program_version = '1.2.0'
+PASS_CHAR = '*'

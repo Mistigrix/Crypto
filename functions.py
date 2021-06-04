@@ -61,3 +61,16 @@ def displayMess(message, title=''):
     box = messagebox.Message()
 
     box.show(title=title, message=message)
+
+def centerWindow(window):
+    # on essai de centrer la fenetre
+    # recuperation de la largeur et la hauteur de l'ecran
+    screen_x = int(window.winfo_screenwidth())
+    screen_y = int(window.winfo_screenheight())
+    window_x = 800
+    window_y = 435
+
+    pos_x = (screen_x // 2) - (window_x // 2)
+    pos_y = (screen_y // 2) - (window_y // 2)
+
+    return f"{window_x}x{window_y}+{pos_x}+{pos_y}"
